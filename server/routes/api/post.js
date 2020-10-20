@@ -1,4 +1,5 @@
 import express from 'express';
+import auth from '../../middleware/auth';
 import Post from '../../models/post';
 
 const router = express.Router()
@@ -10,7 +11,7 @@ router.get('/', async(req,res) => {
     res.json(postFindResult)
 })
 
-router.post('/', async(req,res,next) => {
+router.post('/', auth,async(req,res,next) => {
     try{
         console.log(req, "req");
         const {title, contents, fileUrl, creator } = req.body;
