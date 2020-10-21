@@ -4,4 +4,12 @@
   margin: 0 auto;
 }
 
-
+#page-header {
+  height: 200px;
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQtrrm-z6Y87yBwnTp5ZRVJwxn0r5DKcdgY8g&usqp=CAU');
+  background-position: 30% 55%; // 가로 세로 순서
+  background-attachment: fixed;
+  color: #343a40;
+  border-bottom: 1px #eee solid;
+  padding-top: 60px;
+}
