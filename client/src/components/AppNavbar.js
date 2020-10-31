@@ -1,9 +1,19 @@
-import React from "react";
+import React,{useState} from "react";
 import { Collapse, Container, Nav, Navbar, NavbarToggler } from "reactstrap";
 import { Link } from "react-router-dom";
 import LoginModal from "../components/auth/LoginModal"
+import { useSelector } from "react-redux";
 
 function AppNavbar(){
+  const [isOpen, setIsOpen] = useState(false);
+  //reducer에서 불러온다.
+  const { isAuthenticated, user, userRole } = useSelector((state) => state.auth);
+
+  //babel을 통해 콘솔로그 다 삭제가능
+  console.log(userRole, "UserRole");
+
+  const dispatch = useDispatch();
+  
   return (
     <>
       <Navbar color="dark" expand="lg" className="sticky-top">
