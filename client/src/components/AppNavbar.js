@@ -1,8 +1,10 @@
-import React,{useState} from "react";
+import React,{useCallback, useState,useEffect} from "react";
+import { useDispatch } from 'react-redux'
 import { Collapse, Container, Nav, Navbar, NavbarToggler } from "reactstrap";
 import { Link } from "react-router-dom";
 import LoginModal from "../components/auth/LoginModal"
 import { useSelector } from "react-redux";
+import { LOGOUT_REQUEST } from "../redux/types";
 
 function AppNavbar(){
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +15,22 @@ function AppNavbar(){
   console.log(userRole, "UserRole");
 
   const dispatch = useDispatch();
+
+  //useCallback는 useEffect와 유사
+  const onLogout = useCallback(() => {
+    dispatch({
+      type: LOGOUT_REQUEST
+    })
+  },[dispatch])
+
+  //toggle on off설정
+  useEffect(() => {
+    setIsOpen(false)
+  }, [user])
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen)
+  }
   
   return (
     <>
@@ -21,12 +39,11 @@ function AppNavbar(){
           <Link to="/" className="text-white text-decoration-none">
             My Side Project Blog
           </Link>
-          <NavbarToggler />
-          <Collapse isOpen={true} navbar>
+          <NavbarToggler onClick={handleToggle}/>
+          <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto d-felx justify-content-around" navbar> 
-              {true ? (
-                // <h1 className="text-white">authLink</h1>
-                <LoginModal/>
+              {isAuthenticated ? (
+                <h1 className="text-white">authLink</h1>
               ) : (
                 <LoginModal/>
               )}
