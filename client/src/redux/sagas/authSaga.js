@@ -1,5 +1,5 @@
-import axios from "axios";
-import { call, put, takeEvery, all, fork } from "redux-saga/effects";
+import axios from 'axios';
+import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
 import {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
@@ -19,18 +19,18 @@ import {
   PASSWORD_EDIT_UPLOADING_SUCCESS,
   PASSWORD_EDIT_UPLOADING_REQUEST,
   PASSWORD_EDIT_UPLOADING_FAILURE,
-} from "../types";
+} from '../types';
 
 // Login
 
 const loginUserAPI = (loginData) => {
-  console.log(loginData, "loginData");
+  console.log(loginData, 'loginData');
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
-  return axios.post("api/auth", loginData, config);
+  return axios.post('api/auth', loginData, config);
 };
 
 function* loginUser(action) {
@@ -75,15 +75,15 @@ function* watchlogout() {
 // Register
 
 const registerUserAPI = (req) => {
-  console.log(req, "req");
+  console.log(req, 'req');
 
-  return axios.post("api/user", req);
+  return axios.post('api/user', req);
 };
 
 function* registerUser(action) {
   try {
     const result = yield call(registerUserAPI, action.payload);
-    console.log(result, "RegisterUser Data");
+    console.log(result, 'RegisterUser Data');
     yield put({
       type: REGISTER_SUCCESS,
       payload: result.data,
@@ -126,18 +126,18 @@ const userLoadingAPI = (token) => {
 
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
   if (token) {
-    config.headers["x-auth-token"] = token;
+    config.headers['x-auth-token'] = token;
   }
-  return axios.get("api/auth/user", config);
+  return axios.get('api/auth/user', config);
 };
 
 function* userLoading(action) {
   try {
-    console.log(action, "userLoading");
+    console.log(action, 'userLoading');
     const result = yield call(userLoadingAPI, action.payload);
     yield put({
       type: USER_LOADING_SUCCESS,
@@ -160,20 +160,20 @@ function* watchuserLoading() {
 const EditPasswordAPI = (payload) => {
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
   const token = payload.token;
 
   if (token) {
-    config.headers["x-auth-token"] = token;
+    config.headers['x-auth-token'] = token;
   }
   return axios.post(`/api/user/${payload.userName}/profile`, payload, config);
 };
 
 function* EditPassword(action) {
   try {
-    console.log(action, "EditPassword");
+    console.log(action, 'EditPassword');
     const result = yield call(EditPasswordAPI, action.payload);
     yield put({
       type: PASSWORD_EDIT_UPLOADING_SUCCESS,

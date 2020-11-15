@@ -43,6 +43,8 @@ function AppNavbar() {
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
+
+  
   const addPostClick = () => {};
 
   const authLink = (
