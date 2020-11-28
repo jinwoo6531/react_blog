@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 import { LOGOUT_REQUEST } from '../redux/types';
 import RegisterModal from './auth/RegisterModal';
 
-function AppNavbar() {
+const AppNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   //reducer에서 불러온다.
   const { isAuthenticated, user, userRole } = useSelector(
@@ -44,7 +44,6 @@ function AppNavbar() {
     setIsOpen(!isOpen);
   };
 
-  
   const addPostClick = () => {};
 
   const authLink = (
@@ -76,7 +75,6 @@ function AppNavbar() {
             <Button outline color="light" className="px-3" block>
               <strong>No User</strong>
             </Button>
-            
           )}
         </Form>
       </NavItem>
@@ -87,7 +85,6 @@ function AppNavbar() {
               Logout
             </Button>
           </Link>
-
         </Form>
       </NavItem>
     </Fragment>
@@ -96,13 +93,13 @@ function AppNavbar() {
   const guestLink = (
     <Fragment>
       <NavItem>
-        <RegisterModal/>
+        <RegisterModal />
       </NavItem>
       <NavItem>
-        <LoginModal/>
+        <LoginModal />
       </NavItem>
     </Fragment>
-  )
+  );
 
   return (
     <Fragment>
@@ -114,17 +111,13 @@ function AppNavbar() {
           <NavbarToggler onClick={handleToggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto d-felx justify-content-around" navbar>
-              {isAuthenticated ? (
-                authLink
-              ) : (
-                guestLink
-              )}
+              {isAuthenticated ? authLink : guestLink}
             </Nav>
           </Collapse>
         </Container>
       </Navbar>
     </Fragment>
   );
-}
+};
 
 export default AppNavbar;
