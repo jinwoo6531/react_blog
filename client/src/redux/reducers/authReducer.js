@@ -19,6 +19,7 @@ import {
   PASSWORD_EDIT_UPLOADING_FAILURE,
 } from '../types';
 
+//초기값
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
@@ -80,6 +81,23 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
         userRole: null,
         errorMsg: '',
+      };
+
+    case CLEAR_ERROR_REQUEST:
+      return {
+        ...state,
+        errorMsg: null,
+      };
+    case CLEAR_ERROR_SUCCESS:
+      return {
+        ...state,
+        errorMsg: null,
+      };
+
+    case CLEAR_ERROR_FAILURE:
+      return {
+        ...state,
+        errorMsg: null,
       };
 
     case USER_LOADING_REQUEST:

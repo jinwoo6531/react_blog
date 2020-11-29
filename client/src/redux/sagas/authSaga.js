@@ -22,7 +22,6 @@ import {
 } from '../types';
 
 // Login
-
 const loginUserAPI = (loginData) => {
   console.log(loginData, 'loginData');
   const config = {
@@ -37,6 +36,7 @@ function* loginUser(action) {
   try {
     const result = yield call(loginUserAPI, action.payload);
     console.log(result);
+    //api 성공시
     yield put({
       type: LOGIN_SUCCESS,
       payload: result.data,
@@ -50,11 +50,11 @@ function* loginUser(action) {
 }
 
 function* watchLoginUser() {
+  //매번 LOGIN_REQUEST가 들어 올 경우 loginUser를 실행한다.
   yield takeEvery(LOGIN_REQUEST, loginUser);
 }
 
 // LOGOUT
-
 function* logout(action) {
   try {
     yield put({
