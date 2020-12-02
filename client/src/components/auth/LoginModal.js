@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   NavLink,
   Modal,
@@ -10,19 +10,21 @@ import {
   Label,
   Input,
   Button,
-} from "reactstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST } from "../../redux/types";
+} from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { CLEAR_ERROR_REQUEST, LOGIN_REQUEST } from '../../redux/types';
 
 const LoginModal = () => {
   const [modal, setModal] = useState(false); //모달이 열려있는지 확인
-  const [localMsg, setLocalMsg] = useState("");
+  const [localMsg, setLocalMsg] = useState('');
   const [form, setValues] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const dispatch = useDispatch();
+  //authReducer을 불러오는 useSelector
   const { errorMsg } = useSelector((state) => state.auth);
+
   useEffect(() => {
     try {
       setLocalMsg(errorMsg);
@@ -31,6 +33,8 @@ const LoginModal = () => {
     }
   }, [errorMsg]);
 
+
+  //모달 닫아주는 이벤트함수
   const handleToggle = () => {
     dispatch({
       type: CLEAR_ERROR_REQUEST,
@@ -38,6 +42,7 @@ const LoginModal = () => {
     setModal(!modal);
   };
 
+  
   const onChange = (e) => {
     setValues({
       ...form,
@@ -82,7 +87,7 @@ const LoginModal = () => {
                 placeholder="Password"
                 onChange={onChange}
               />
-              <Button color="dark" style={{ marginTop: "2rem" }} block>
+              <Button color="dark" style={{ marginTop: '2rem' }} block>
                 Login
               </Button>
             </FormGroup>
