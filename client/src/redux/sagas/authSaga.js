@@ -101,7 +101,6 @@ function* watchregisterUser() {
 }
 
 // clear Error
-
 function* clearError() {
   try {
     yield put({
