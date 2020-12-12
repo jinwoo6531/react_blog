@@ -19,7 +19,6 @@ import {
   PASSWORD_EDIT_UPLOADING_FAILURE,
 } from '../types';
 
-//초기값
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
@@ -83,23 +82,6 @@ const authReducer = (state = initialState, action) => {
         errorMsg: '',
       };
 
-    case CLEAR_ERROR_REQUEST:
-      return {
-        ...state,
-        errorMsg: null,
-      };
-    case CLEAR_ERROR_SUCCESS:
-      return {
-        ...state,
-        errorMsg: null,
-      };
-
-    case CLEAR_ERROR_FAILURE:
-      return {
-        ...state,
-        errorMsg: null,
-      };
-
     case USER_LOADING_REQUEST:
       return {
         ...state,
@@ -144,28 +126,21 @@ const authReducer = (state = initialState, action) => {
         errorMsg: action.payload.fail_msg,
         previousMatchMsg: action.payload.match_msg,
       };
-    case USER_LOADING_REQUEST:
+    case CLEAR_ERROR_REQUEST:
       return {
         ...state,
-        isLoading: true,
       };
-    case USER_LOADING_SUCCESS:
+    case CLEAR_ERROR_SUCCESS:
       return {
         ...state,
-        isAuthenticated: true,
-        isLoading: false,
-        user: action.payload,
-        userId: action.payload._id,
-        userName: action.payload.name,
-        userRole: action.payload.role,
+        errorMsg: '',
+        previousMatchMsg: '',
       };
-    case USER_LOADING_FAILURE:
+    case CLEAR_ERROR_FAILURE:
       return {
         ...state,
-        user: null,
-        isAuthenticated: false,
-        isLoading: false,
-        userRole: '',
+        errorMsg: 'Clear Error Fail',
+        previousMatchMsg: 'Clear Error Fail',
       };
 
     default:

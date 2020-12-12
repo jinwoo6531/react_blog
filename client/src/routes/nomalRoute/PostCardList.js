@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { POSTS_LOADING_REQUEST } from '../../redux/types';
 import { Helmet } from 'react-helmet';

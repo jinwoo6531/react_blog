@@ -1,5 +1,13 @@
 import React, { Fragment } from 'react';
-import { Row, Badge, Button } from 'reactstrap';
+import {
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  Button,
+  Badge,
+  Row,
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMouse } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +18,6 @@ const PostCardOne = ({ posts }) => {
       {Array.isArray(posts)
         ? posts.map(({ _id, title, fileUrl, comments, views }) => {
             return (
-              // 총 12칸중 12/4를 했기 떄문에 3칸만 화면에 출력
               <div key={_id} className="col-md-4">
                 <Link
                   to={`/post/${_id}`}
@@ -20,7 +27,7 @@ const PostCardOne = ({ posts }) => {
                     <CardImg top alt="카드이미지" src={fileUrl} />
                     <CardBody>
                       <CardTitle className="text-truncate d-flex justify-content-between">
-                        <span className="text-truncate">{title}</span>
+                        <span className="text-truncate">{title} </span>
                         <span>
                           <FontAwesomeIcon icon={faMouse} />
                           &nbsp;&nbsp;
